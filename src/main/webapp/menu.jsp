@@ -12,7 +12,7 @@
 <body>
   <%-- <%@ include file="header.jsp"%> --%>
   
-  <%=user.getUserId() %>さん、こんにちは！
+  <%-- <%=user.getUserId() %>さん、こんにちは！ --%>
   <div class="main">
     <main>
       <h2>顧客管理システム</h2>
