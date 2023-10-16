@@ -9,5 +9,15 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/Users/user/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.28/a2ff5da8bcd8b1b26f36b806ced63213362c6dcc/lombok-1.18.28.jar" sourcepath="/Users/user/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.28/9bfef13043bb35cb50cea6589d2fb4bad8fce5b3/lombok-1.18.28-sources.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/user/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-observation/1.11.3/aaea9efe8f00c184b12f729a2f37e18ca4f33b8d/micrometer-observation-1.11.3.jar" sourcepath="/Users/user/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-observation/1.11.3/3277e54c15989db3914e03876c295066775d6015/micrometer-observation-1.11.3-sources.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
