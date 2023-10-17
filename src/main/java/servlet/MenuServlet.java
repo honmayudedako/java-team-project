@@ -42,7 +42,7 @@ public class MenuServlet extends HttpServlet {
 		String url = "login.jsp";
 		
 		if (request.getParameter("button").equals("顧客一覧")) {
-			url = "login.jsp";
+			url = "Customer_List.jsp";
 		} else if (request.getParameter("button").equals("顧客登録")) {
 			url = "create.jsp";
 		} else if (request.getParameter("button").equals("権限編集") ) {
