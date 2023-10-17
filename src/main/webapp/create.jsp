@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 //リクエストスコープからのデータの取得
 String message = (String)request.getAttribute("message");
 %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>顧客登録フォーム</title>
 </head>
 <body>
@@ -57,5 +59,6 @@ String message = (String)request.getAttribute("message");
 	<input type="reset" value="クリア">
 </form>
 <a href="menu.jsp">メニュー画面へ</a>
+
 </body>
 </html>

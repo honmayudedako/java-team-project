@@ -44,5 +44,3 @@ public class UserDAO {
     return user;
   }
 }
-
-//データベースを操作
