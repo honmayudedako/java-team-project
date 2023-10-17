@@ -7,29 +7,29 @@ import java.sql.SQLException;
 import model.entity.CustomerBean;
 
 public class CustomerDAO {
-	public CustomerBean createCustomer(CustomerBean customer) throws ClassNotFoundException, SQLException {
-	    // 顧客情報を格納する変数
-		// CustomerBean customer = null;
-			
-	    // SQL文-新規登録
-	    String sql = "INSERT INTO m_customer VALUES(?, ?, ?, ?, ?, ?, ?)";
-			
-	    // try-with-resourcesを使用し、データベース接続確立とプリペアドステートメントを取得
-	    try (Connection con = ConnectionManager.getConnection();
-					PreparedStatement pstmt = con.prepareStatement(sql)) {
-				
-	      // プレースホルダに値をセット
-//	      pstmt.setString(1, );
-//	      pstmt.setString(2, );
-				
-	      // SQL文の実行
-//	      ResultSet res = pstmt.executeUpdate();
-				
-	      // id、passwordが一致する情報がデータベースにあれば、UserBeanをインスタンス化し、各カラムの値をインスタンスにセット
-//	      if (res.next()) {
-//	        
-//	      }
-	    }
-	    return customer;
-	  }
+	public void createCustomer(CustomerBean customer) throws ClassNotFoundException, SQLException {
+
+		// SQL文-新規登録
+		String sql = "INSERT INTO m_customer (customer_name, customer_name_kana, post_code, area_code, gender, birthday, phone_number) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+		// try-with-resourcesを使用し、データベース接続確立とプリペアドステートメントを取得
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+			// プレースホルダに値をセット
+			pstmt.setString(1, customer.getName());
+			pstmt.setString(2, customer.getNameKana());
+			pstmt.setString(3, customer.getPostCode());
+			pstmt.setString(4, customer.getAreaCode());
+			pstmt.setString(5, customer.getGender());
+			pstmt.setString(6, customer.getBirthday());
+			pstmt.setString(7, customer.getPhoneNumber());
+
+			// SQL文の実行
+			pstmt.executeUpdate();
+
+		}
+		return;
+	}
 }
