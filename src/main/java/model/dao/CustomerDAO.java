@@ -9,7 +9,7 @@ import model.entity.CustomerBean;
 public class CustomerDAO {
 	public void createCustomer(CustomerBean customer) throws ClassNotFoundException, SQLException {
 
-		// SQL文-新規登録
+		// SQL文-新規登録 
 		String sql = "INSERT INTO m_customer (customer_name, customer_name_kana, post_code, area_code, gender, birthday, phone_number) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
