@@ -1,12 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+//リクエストスコープからのデータの取得
+String message = (String)request.getAttribute("message");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+<title>顧客登録フォーム</title>
 </head>
 <body>
-<h1>顧客の新規登録ページ</h1>
+<h1>顧客登録フォーム</h1>
+<h2><%= message %></h2>
+<form action="CreateServlet" method="post">
+	<table>
+		<tr>
+			<td>氏名</td>
+			<td><input type="text" name="customerName"></td>
+		</tr>
+		<tr>
+			<td>かな</td>
+			<td><input type="text" name="customerNameKana"></td>
+		</tr>
+		<tr>
+			<td>郵便番号</td>
+			<td><input type="text" name="postCode"></td>
+		</tr>
+		<tr>
+			<td>地区</td>
+			<td>
+				<select type="text" name="areaCode">
+					<option>北海道</option>
+					<option>東北</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>性別</td>
+			<td>
+				<input type="radio" name="gender" value="男">男
+				<input type="radio" name="gender" value="女">女
+			</td>
+		</tr>
+		<tr>
+			<td>生年月日</td>
+			<td><input type="text" name="birthday"></td>
+		</tr>
+		<tr>
+			<td>電話番号</td>
+			<td><input type="text" name="phoneNumber"></td>
+		</tr>
+	</table>
+	<input type="submit" value="顧客登録確定">
+	<input type="reset" value="クリア">
+</form>
+<a href="menu.jsp">メニュー画面へ</a>
+
 </body>
 </html>

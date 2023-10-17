@@ -13,7 +13,9 @@
       <div class="imageWrap">
         <img class="image" src="assets/images/seassist_logo.png" alt="ロゴ">
       </div>
+      <h1>蓑田が見出しを編集しました!!</h1>
       <h2>顧客管理システム</h2>
+      <p>もりさんの追記です</p>
       <form action="login" method="post">
         <input type="text" name="id" placeholder="userId"><br>
         <input type="password" name="password" placeholder="password"><br>
