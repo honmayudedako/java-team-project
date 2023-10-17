@@ -34,8 +34,14 @@ String message = (String)request.getAttribute("message");
 			<td>地区</td>
 			<td>
 				<select type="text" name="areaCode">
-					<option>北海道</option>
-					<option>東北</option>
+					<option value="A001">北海道</option>
+					<option value="A002">東北</option>
+					<option value="A003">関東</option>
+					<option value="A004">中部</option>
+					<option value="A005">近畿</option>
+					<option value="A006">中国</option>
+					<option value="A007">四国</option>
+					<option value="A008">九州沖縄</option>
 				</select>
 			</td>
 		</tr>

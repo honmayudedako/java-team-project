@@ -45,8 +45,8 @@ public class CreateServlet extends HttpServlet {
 		
 		//　フォームから入力した値を取得
 		CustomerBean customer = new CustomerBean(); 
-		customer.setName(request.getParameter("name"));
-		customer.setNameKana(request.getParameter("nameKana"));
+		customer.setName(request.getParameter("customerName"));
+		customer.setNameKana(request.getParameter("customerNameKana"));
 		customer.setPostCode(request.getParameter("postCode"));
 		customer.setAreaCode(request.getParameter("areaCode"));
 		customer.setGender(request.getParameter("gender"));
@@ -55,15 +55,21 @@ public class CreateServlet extends HttpServlet {
 		
 		CustomerDAO dao = new CustomerDAO();
 		// データ登録のtry-catchエラー処理
+		String url = "";
+		
 		try {
 			dao.createCustomer(customer);
+			url = "create.jsp";
 		} catch(ClassNotFoundException | SQLException e) {
-			
+			url = "login.jsp";
 		}
 		
-		request.setAttribute("message", "登録完了");
+		// リクエストスコープに入力値を一時的に表示
+		String name = request.getParameter("customerName");
+		request.setAttribute("message", name);
+		
 		// 一覧ページへリダイレクト
-		String url = "create.jsp";
+		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 	    rd.forward(request, response);
 	}
