@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 //リクエストスコープからのデータの取得
 String message = (String)request.getAttribute("message");
 %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>顧客登録フォーム</title>
 </head>
 <body>
@@ -32,8 +34,14 @@ String message = (String)request.getAttribute("message");
 			<td>地区</td>
 			<td>
 				<select type="text" name="areaCode">
-					<option>北海道</option>
-					<option>東北</option>
+					<option value="A001">北海道</option>
+					<option value="A002">東北</option>
+					<option value="A003">関東</option>
+					<option value="A004">中部</option>
+					<option value="A005">近畿</option>
+					<option value="A006">中国</option>
+					<option value="A007">四国</option>
+					<option value="A008">九州沖縄</option>
 				</select>
 			</td>
 		</tr>
@@ -57,5 +65,6 @@ String message = (String)request.getAttribute("message");
 	<input type="reset" value="クリア">
 </form>
 <a href="menu.jsp">メニュー画面へ</a>
+
 </body>
 </html>
