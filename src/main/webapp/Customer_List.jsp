@@ -11,8 +11,12 @@
 	<h1>顧客一覧</h1>
 	<form action="customer-list" method="post">
 		<input type="text" name="searchWord">
-		<button 　type="submit" name="button" value="検索">検索</button>
+		<button type="submit" name="button" value="検索">検索</button>
 	</form>
+	<button class="back" value="メニュー画面へ" method="post">
+		<a href="menu.jsp">メニュー画面へ</a>
+	</button>
+
 
 	<table>
 		<tbody>
@@ -28,31 +32,14 @@
 				<td>スタンリー・チャウ</td>
 				<td>すたんりー・ちゃう</td>
 				<td>男</td>
-				<input type="hidden" name="customerId" value="1"
+				<input type="hidden" name="customerId" value="<%=customer.getCustomerId() %>"
 					action="customer-detail">
 				<td><button type="submit" name="button" value="詳細">詳細</button></td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>山田太郎</td>
-				<td>やまだたろう</td>
-				<td>男</td>
-				<td><button>詳細</button></td>
-			</tr>
-
-			<tr>
-				<td>3</td>
-				<td>佐藤花子</td>
-				<td>さとうはなこ</td>
-				<td>女</td>
-				<td><button>詳細</button></td>
 			</tr>
 		</tbody>
 	</table>
 
-	<button class="back" value="メニュー画面へ" method="post">
-		<a href="menu.jsp">メニュー画面へ</a>
-	</button>
+
 
 </body>
 </html>
