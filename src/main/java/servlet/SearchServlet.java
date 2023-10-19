@@ -17,6 +17,17 @@ import model.entity.CustomerBean;
 
 @WebServlet("/customer-list")
 public class SearchServlet extends HttpServlet {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+		// リクエストのエンコーディング
+		request.setCharacterEncoding("UTF-8");
+
+		// 一覧ページへリダイレクト
+					String url = "Customer_List.jsp";
+					RequestDispatcher rd = request.getRequestDispatcher(url);
+					rd.forward(request, response);
+
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 		// リクエストのエンコーディング
 		request.setCharacterEncoding("UTF-8");
@@ -32,16 +43,18 @@ public class SearchServlet extends HttpServlet {
 		try {
 			customerList = dao.SearchCustomer(searchWord);
 			request.setAttribute("customerList", customerList);
-
 			// 一覧ページへリダイレクト
 			String url = "Customer_List.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(url);
 			rd.forward(request, response);
-
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("該当しません");
-
+			// エラーページへリダイレクト
+			String url = "err.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(url);
+			rd.forward(request, response);
 		}
-
+		
 	}
 }

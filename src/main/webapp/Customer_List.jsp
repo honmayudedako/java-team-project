@@ -23,11 +23,8 @@ System.out.println(customerList);
 	</button>
 
 	<%
-	if (customerList !=null) {
+	if (customerList != null) {
 	%>
-
-
-	}
 	<table>
 		<tbody>
 
@@ -44,9 +41,9 @@ System.out.println(customerList);
 			%>
 			<tr>
 				<td><%=customer.getId()%></td>
-				<td>スタンリー・チャウ</td>
-				<td>すたんりー・ちゃう</td>
-				<td>男</td>
+				<td><%=customer.getName()%></td>
+				<td><%=customer.getNameKana()%></td>
+				<td><%=customer.getGender()%></td>
 				<input type="hidden" name="customerId"
 					value="<%=customer.getId()%>" action="customer-detail">
 				<td><button type="submit" name="button" value="詳細">詳細</button></td>
