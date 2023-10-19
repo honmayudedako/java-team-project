@@ -11,17 +11,17 @@ public class CustomerBean {
 	private String birthday;
 	private String phoneNumber;
 
-	public CustomerBean(String name, String nameKana, String postCode, String areaCode, String gender, String birthday,
-			String phoneNumber) {
-		this.name = name;
-		this.nameKana = nameKana;
-		this.postCode = postCode;
-		this.areaCode = areaCode;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phoneNumber = phoneNumber;
-	}
-
+	/*	public CustomerBean(String name, String nameKana, String postCode, String areaCode, String gender, String birthday,
+				String phoneNumber) {
+			this.name = name;
+			this.nameKana = nameKana;
+			this.postCode = postCode;
+			this.areaCode = areaCode;
+			this.gender = gender;
+			this.birthday = birthday;
+			this.phoneNumber = phoneNumber;
+		}*/
+	public CustomerBean(){};
 	public int getId() {
 		return this.id;
 	}
