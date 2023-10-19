@@ -1,7 +1,8 @@
-<%@page import="model.entity.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="model.entity.UserBean"%>
 <%UserBean user = (UserBean)session.getAttribute("user"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,10 @@
 <link rel="stylesheet" href="assets/stylesheets/app.css">
 </head>
 <body>
-  <%-- <%@ include file="header.jsp"%> --%>
-  
-  <%-- <%=user.getUserId() %>さん、こんにちは！ --%>
+<%@ include file="/WEB-INF/include/header.jsp" %>
+<% if (user != null && user.isAuthenticated()){ %> 
+<%= user.getUserId()  %>さん、こんにちは！
+<% } %>
   <div class="main">
     <main>
       <h2>顧客管理システム</h2>

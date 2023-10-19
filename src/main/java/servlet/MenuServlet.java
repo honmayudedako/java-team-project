@@ -28,8 +28,15 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String url = "menu.jsp";
+		
+//		HttpSession session = request.getSession();
+//		UserBean user = (UserBean)session.getAttribute("user");
+//		if(user == null) {
+//			url = "login.jsp";
+//		} 
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
 	}
 
 	/**
@@ -39,18 +46,19 @@ public class MenuServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		
-		String url = "login.jsp";
+		String path = "";
 		
 		if (request.getParameter("button").equals("顧客一覧")) {
-			url = "Customer_List.jsp";
+			path = "/";
 		} else if (request.getParameter("button").equals("顧客登録")) {
-			url = "create.jsp";
+			path = "/create";
 		} else if (request.getParameter("button").equals("権限編集") ) {
-			url = "login.jsp";
+			path = "/"; // 本間氏→権限編集ページへのパスを記述
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher(url);
-	    rd.forward(request, response);
+	    //メニューページにリダイレクト
+  		response.sendRedirect(request.getContextPath() + path); 
+	  		
 	}
 
 }

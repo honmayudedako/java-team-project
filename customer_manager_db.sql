@@ -23,7 +23,7 @@ CREATE TABLE m_authority (
 ​
 INSERT INTO m_authority(authority_code, authority_name)
   VALUES('A0', '閲覧者'),('A1', '編集者'),('A2', '管理者');
-​
+
 -- ④地区テーブル
 CREATE TABLE m_area (
   area_code CHAR(4) PRIMARY KEY,
@@ -82,5 +82,7 @@ INSERT INTO m_customer(customer_name, customer_name_kana, post_code, area_code, 
   VALUES('蓑田冬弥', 'みのだとうや', '8110000', 'A008', '男', 19950116, '08012345678')
   ,('山田太郎', 'やまだたろう', '8000000', 'A008', '男', 19920715, '07054545454')
   ,('安藤忠雄', 'あんどうただお', '5520015', 'A005', '男', 19410913, '09055555555');
-​
+
+
 COMMIT;
+

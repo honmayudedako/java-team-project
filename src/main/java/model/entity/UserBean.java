@@ -12,7 +12,9 @@ public class UserBean implements Serializable {
    * パスワード
    */
   private String password;
-
+  
+  private boolean authenticated = false;
+  
   /**
    * デフォルトコンストラクタ
    */
@@ -46,5 +48,12 @@ public class UserBean implements Serializable {
    */
   public void setPassword(String password) {
     this.password = password;
+  }
+  
+  public boolean isAuthenticated() {
+	  return this.authenticated;
+  }
+  public void setAuthenticated(boolean authenticated) {
+	  this.authenticated = authenticated;
   }
 }
