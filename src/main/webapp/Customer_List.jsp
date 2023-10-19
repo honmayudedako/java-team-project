@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Customer_List</title>
 <link rel="stylesheet" href="style.css" type="text/css">
+<%@ page import="java.util.List, model.entity.CustomerBean"%>
+<%
+List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("customerList");
+System.out.println(customerList);
+%>
 </head>
 <body>
 	<h1>顧客一覧</h1>
@@ -17,9 +22,15 @@
 		<a href="menu.jsp">メニュー画面へ</a>
 	</button>
 
+	<%
+	if (customerList !=null) {
+	%>
 
+
+	}
 	<table>
 		<tbody>
+
 			<tr>
 				<td>顧客ID</td>
 				<td>氏名</td>
@@ -27,19 +38,28 @@
 				<td>性別</td>
 				<td></td>
 			</tr>
+
+			<%
+			for (CustomerBean customer : customerList) {
+			%>
 			<tr>
-				<td>1</td>
+				<td><%=customer.getId()%></td>
 				<td>スタンリー・チャウ</td>
 				<td>すたんりー・ちゃう</td>
 				<td>男</td>
-				<input type="hidden" name="customerId" value="<%=customer.getCustomerId() %>"
-					action="customer-detail">
+				<input type="hidden" name="customerId"
+					value="<%=customer.getId()%>" action="customer-detail">
 				<td><button type="submit" name="button" value="詳細">詳細</button></td>
 			</tr>
+			<%
+			}
+			%>
 		</tbody>
 	</table>
 
-
+	<%
+	}
+	%>
 
 </body>
 </html>
