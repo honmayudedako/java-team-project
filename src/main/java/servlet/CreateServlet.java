@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,11 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.dao.CustomerDAO;
 import model.entity.CustomerBean;
+import validation.Validator;
 
 /**
  * Servlet implementation class CreateServlet
  */
-@WebServlet("/CreateServlet")
+@WebServlet("/create")
 public class CreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,8 +35,9 @@ public class CreateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// フォワード
+		RequestDispatcher rd = request.getRequestDispatcher("create.jsp");
+	    rd.forward(request, response);
 	}
 
 	/**
@@ -53,23 +57,33 @@ public class CreateServlet extends HttpServlet {
 		customer.setBirthday(request.getParameter("birthday"));
 		customer.setPhoneNumber(request.getParameter("phoneNumber"));
 		
-		CustomerDAO dao = new CustomerDAO();
-		// データ登録のtry-catchエラー処理
-		String url = "";
 		
-		try {
-			dao.createCustomer(customer);
+		CustomerDAO dao = new CustomerDAO();
+		List<String> errors = new ArrayList<>();
+		// データ登録のtry-catchエラー処理
+		String url = "create.jsp";
+		errors = Validator.CustomerValidator(customer);
+		if(!errors.isEmpty()) {
 			url = "create.jsp";
-		} catch(ClassNotFoundException | SQLException e) {
-			url = "login.jsp";
+			//リクエストスコープにエラーメッセージを保存
+			request.setAttribute("errors", errors);
+		} else {
+			try {
+				dao.createCustomer(customer);
+				url = "Customer_List.jsp";
+				
+			} catch(ClassNotFoundException | SQLException e) {
+				request.setAttribute("sqlFailed", "情報の登録に失敗しました"+e.getMessage());
+				url = "create.jsp";
+			}
 		}
 		
+		
 		// リクエストスコープに入力値を一時的に表示
-		String name = request.getParameter("customerName");
-		request.setAttribute("message", name);
+//		String name = request.getParameter("customerName");
+//		request.setAttribute("message", name);
 		
-		// 一覧ページへリダイレクト
-		
+		// フォワード
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 	    rd.forward(request, response);
 	}

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%
-//リクエストスコープからのデータの取得
-String message = (String)request.getAttribute("message");
+<%@ page import="java.util.List" %>
+<%@page import="model.entity.UserBean"%>
+<% UserBean user = (UserBean)session.getAttribute("user"); 
+List<String> errors = (List<String>)request.getAttribute("errors"); 
+String sqlFailed = (String)request.getAttribute("sqlFailed");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,19 @@ String message = (String)request.getAttribute("message");
 <title>顧客登録フォーム</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/include/header.jsp" %>
 <h1>顧客登録フォーム</h1>
-<h2><%= message %></h2>
-<form action="CreateServlet" method="post">
+<%-- <%= user.getUserId() %>ログイン --%>
+
+<%if (errors != null) {
+	for(String error : errors) {%>
+	<p><%= error %></p>
+<% }
+}%>
+<%if (sqlFailed != null) {%>
+<%= sqlFailed %>
+<%} %>
+<form action="create" method="post">
 	<table>
 		<tr>
 			<td>氏名</td>
@@ -34,6 +45,7 @@ String message = (String)request.getAttribute("message");
 			<td>地区</td>
 			<td>
 				<select type="text" name="areaCode">
+					<option value="A000">未設定</option>
 					<option value="A001">北海道</option>
 					<option value="A002">東北</option>
 					<option value="A003">関東</option>
