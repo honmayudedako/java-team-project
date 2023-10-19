@@ -17,6 +17,7 @@ public class SearchDAO {
 
 		searchWord = "%" + searchWord + "%";
 		// プレースホルダーのSQL文
+
 		String sql = "SELECT * FROM m_customer WHERE customer_name LIKE ?";
 
 		List<CustomerBean> customerList = new ArrayList<>();
