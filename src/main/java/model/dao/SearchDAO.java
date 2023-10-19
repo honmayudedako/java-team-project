@@ -16,7 +16,7 @@ public class SearchDAO {
 		CustomerBean user = null;
 
 		// プレースホルダーのSQL文
-		String sql = "SELECT * FROM m_customer WHERE _name = ?";
+		String sql = "SELECT * FROM m_customer WHERE customer_name = ?";
 
 		
 		List<CustomerBean> customerList = new ArrayList<>();
