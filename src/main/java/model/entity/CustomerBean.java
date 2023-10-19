@@ -21,7 +21,9 @@ public class CustomerBean {
 			this.birthday = birthday;
 			this.phoneNumber = phoneNumber;
 		}*/
+  
 	public CustomerBean(){};
+
 	public int getId() {
 		return this.id;
 	}
