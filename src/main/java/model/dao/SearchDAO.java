@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.entity.CustomerBean;
-import model.entity.UserBean;
 
 public class SearchDAO {
 
-	public CustomerBean checkLogin(String searchWord) throws ClassNotFoundException, SQLException {
+	public List<CustomerBean>  SearchCustomer(String searchWord) throws ClassNotFoundException, SQLException {
 		// ユーザ情報を格納する変数
 		CustomerBean user = null;
 
@@ -18,7 +19,7 @@ public class SearchDAO {
 		String sql = "SELECT * FROM m_customer WHERE _name = ?";
 
 		
-		List<CustomerBean> customerList = new Arraylist<>()
+		List<CustomerBean> customerList = new ArrayList<>();
 		
 		// try-with-resourcesを使用し、データベース接続確立とプリペアドステートメントを取得
 		try (Connection con = ConnectionManager.getConnection();
@@ -33,13 +34,14 @@ public class SearchDAO {
 			// id、passwordが一致する情報がデータベースにあれば、UserBeanをインスタンス化し、各カラムの値をインスタンスにセット
 			while (res.next()) {
 				CustomerBean customer = new CustomerBean();
-				customer.setcustomerId (res.getInt("id"));
-				customer.setcustomername(res.getString("name"));
-				customer.setcustomernameKana(res.getString("nameKana"));
-				customer.setcustomergender(res.getString("gender"));
+				customer.setId (res.getInt("id"));
+				customer.setName(res.getString("name"));
+				customer.setNameKana(res.getString("nameKana"));
+				customer.setGender(res.getString("gender"));
+				customerList.add(customer);
 		
 			}
 		}
-		return customer;
+		return customerList;
 	}
 }
