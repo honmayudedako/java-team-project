@@ -53,8 +53,6 @@ public class AuthFilter extends HttpFilter implements Filter {
 		} else {
 			// ログインページにリダイレクト処理を追加
 			httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
-//			dispatcher.forward(request, response);
 		}
 		
 	}

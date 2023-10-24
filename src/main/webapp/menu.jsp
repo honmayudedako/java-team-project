@@ -9,19 +9,25 @@
 <meta charset="UTF-8">
 <title>メニュー画面</title>
 <link rel="stylesheet" href="assets/stylesheets/app.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/include/header.jsp" %>
 <% if (user != null && user.isAuthenticated()){ %> 
-<%= user.getUserId()  %>さん、こんにちは！
+<p class="text-secondary mb-2"><%= user.getUserId()  %>さん、こんにちは！</p>
 <% } %>
   <div class="main">
     <main>
-      <h2>顧客管理システム</h2>
+      <h2 class="mb-5">顧客管理システム</h2>
       <form action="menu" method="post">
-        <input type="submit" name="button" value="顧客一覧"><br>
-        <input type="submit" name="button" value="顧客登録"><br>
-        <input type="submit" name="button" value="権限編集">
+      	<div class="d-flex justify-content-around w-50 mx-auto">
+      		<input type="submit" name="button" value="顧客一覧" class="btn btn-primary fs-5">
+        	<input type="submit" name="button" value="顧客登録" class="btn btn-primary fs-5">
+        	<input type="submit" name="button" value="権限編集" class="btn btn-primary fs-5">
+        	<input type="submit" name="button" value="顧客編集" class="btn btn-primary fs-5">
+      	</div>
+        
       </form>
     </main>
   </div>

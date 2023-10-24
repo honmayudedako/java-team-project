@@ -1,1 +1,41 @@
 @charset "UTF-8";
+
+.login .imageWrap {
+	margin-top:48px;
+}
+.login .main_title {
+    font-size: 24px;
+    margin-top: 24px;
+    font-weight: bold;
+}
+.login_form {
+	background-color: #eee;
+	padding: 60px;
+	width: 400px;
+	margin: auto;
+	margin-top: 32px;
+}
+
+.login_form .textBox {
+	background-color: #fff;
+	padding: 0.4rem 1rem;
+	text-align: left;
+	border: 1px solid #ccc;
+	margin-top: 8px;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+.login .submitButton {
+	background-color: #029df4;
+	color: #fff;
+	display: block;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	margin: auto;
+	
+}
+.error_msg {
+	margin: 16px 0;
+}
+

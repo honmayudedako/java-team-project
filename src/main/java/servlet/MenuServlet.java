@@ -49,11 +49,13 @@ public class MenuServlet extends HttpServlet {
 		String path = "";
 		
 		if (request.getParameter("button").equals("顧客一覧")) {
-			path = "/";
+			path = "/customer-list";
 		} else if (request.getParameter("button").equals("顧客登録")) {
 			path = "/create";
 		} else if (request.getParameter("button").equals("権限編集") ) {
 			path = "/"; // 本間氏→権限編集ページへのパスを記述
+		} else if (request.getParameter("button").equals("顧客編集") ) {
+			path = "/customer-edit"; 
 		}
 		
 	    //メニューページにリダイレクト

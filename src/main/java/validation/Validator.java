@@ -12,11 +12,15 @@ public class Validator {
 		
 		if (customer.getName() == null || customer.getName().isEmpty()) {
 			errors.add("氏名は必須です。");
-		} 
+		} else if ( Pattern.matches("^.{1,20}$", customer.getName()) == false) {
+			errors.add("氏名は20文字以内で入力してください");
+		}
 		
 		if (customer.getNameKana() == null || customer.getNameKana().isEmpty()) {
 			errors.add("かなは必須です。");
-		} 
+		} else if ( Pattern.matches("^.{1,20}$", customer.getNameKana()) == false) {
+			errors.add("かなは20文字以内で入力してください");
+		}
 		
 		if (customer.getPostCode() == null || customer.getPostCode().isEmpty()) {
 			errors.add("郵便番号は必須です。");
@@ -34,6 +38,8 @@ public class Validator {
 		
 		if (customer.getBirthday() == null || customer.getBirthday().isEmpty()) {
 			errors.add("生年月日は必須です。");
+		} else if ( Pattern.matches("[0-9]{6,8}", customer.getBirthday()) == false) {
+			errors.add("生年月日の形式が正しくありません");
 		}
 		
 		if (customer.getPhoneNumber() == null || customer.getPhoneNumber().isEmpty()) {

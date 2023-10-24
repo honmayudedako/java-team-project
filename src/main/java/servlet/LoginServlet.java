@@ -34,14 +34,17 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
-		UserBean user = (UserBean)session.getAttribute("user");
-		if(user != null) {
-			response.sendRedirect(request.getContextPath() + "/menu"); 
+		UserBean user = (UserBean) session.getAttribute("user");
+		// セッションにuserインスタンスが保存されているかを確認
+		if (user != null) {
+			//ログインしていればメニューページにリダイレクト
+			response.sendRedirect(request.getContextPath() + "/menu");
 		} else {
+			//ログインしていなければログインページにフォワード
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.forward(request, response); 
+			rd.forward(request, response);
 		}
 	}
 
@@ -56,36 +59,37 @@ public class LoginServlet extends HttpServlet {
 		// リクエストパラメータの取得
 		String id = request.getParameter("id"); // ユーザID
 		String password = request.getParameter("password"); // パスワード
-
-		String url = "login.jsp"; // 転送用パスを格納する変数
-
+		String url = "menu.jsp"; // メニュー画面のパス
 		UserDAO dao = new UserDAO(); // UserDAOクラスをインスタンス化
 
 		// try-catchで例外処理
 		try {
 			// UserDAOクラスのcheckLoginメソッドを呼び出してユーザ情報を取得
 			UserBean user = dao.checkLogin(id, password);
-			
-			
+
 			// idとpasswordがデータベースに登録されていた場合
 			if (user != null) {
-				url = "menu.jsp"; // メニュー画面のパス
 				user.setAuthenticated(true);
 				// セッションオブジェクト取得し、セッションスコープに値をセット
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				
+
 				//メニューページにリダイレクト
-				response.sendRedirect(request.getContextPath() + "/menu"); 
-				
-			// idとpasswordがデータベースに登録されていなかった場合
-			} else {
-				request.setAttribute("loginError", "ログインに失敗しました。");
+				response.sendRedirect(request.getContextPath() + "/menu");
+			} 
+			// idとpasswordが未入力の場合
+			else if (id == "" && password == "") {
+				request.setAttribute("loginError", "ログインIDとパスワードが未入力です");
 				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-				rd.forward(request, response); 
+				rd.forward(request, response);
+			}
+			// idとpasswordがデータベースに登録されていなかった場合
+			else {
+				request.setAttribute("loginError", "ログインID、またはパスワードが正しくありません");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.forward(request, response);
 			}
 
-			// 例外キャッチ
 		} catch (ClassNotFoundException | SQLException e) {
 			url = "err.jsp"; // エラーページのパス
 			e.printStackTrace();
@@ -93,7 +97,5 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(url);
 			rd.forward(request, response);
 		}
-
-
 	}
 }

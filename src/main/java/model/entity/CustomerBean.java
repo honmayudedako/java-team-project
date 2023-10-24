@@ -63,6 +63,10 @@ public class CustomerBean {
 	public void setAreaCode(String areaCode) {
 		this.areaCode = areaCode;
 	}
+	
+//	public String getAreaName() {
+//		if(this.areaCode == )
+//	}
 
 	public String getGender() {
 		return this.gender;
@@ -76,8 +80,8 @@ public class CustomerBean {
 		return this.birthday;
 	}
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+	public void setBirthday(String string) {
+		this.birthday = string;
 	}
 
 	public String getPhoneNumber() {

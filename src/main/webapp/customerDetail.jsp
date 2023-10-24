@@ -28,7 +28,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><%=request.getArrribute("id")%></td>
+				<%-- <td><%=request.getArrribute("id")%></td>
 				<td><%=request.getArrribute("name")%></td>
 				<td><%=request.getArrribute("nameKana")%></td>
 				<td><%=request.getArrribute("postCode")%></td>
@@ -37,7 +37,7 @@
 				<td><%=request.getArrribute("birthday")%></td>
 				<td><%=request.getArrribute("phoneNumber")%></td>
 				<td><%=request.getArrribute("insertDatetime")%></td>
-				<td><%=request.getArrribute("updateDatetime")%></td>
+				<td><%=request.getArrribute("updateDatetime")%></td> --%>
 			</tr>
 		</tbody>
 	</table>

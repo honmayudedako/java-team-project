@@ -74,14 +74,15 @@ CREATE TABLE m_customer (
   UPDATE_datetime DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
   PRIMARY KEY(customer_id),
   FOREIGN KEY (area_code) REFERENCES m_area(area_code) ON DELETE CASCADE ON UPDATE CASCADE
-  -- 外部キー制約を追加↑
 );
 ​
 ​
 INSERT INTO m_customer(customer_name, customer_name_kana, post_code, area_code, gender, birthday, phone_number)
   VALUES('蓑田冬弥', 'みのだとうや', '8110000', 'A008', '男', 19950116, '08012345678')
-  ,('山田太郎', 'やまだたろう', '8000000', 'A008', '男', 19920715, '07054545454')
-  ,('安藤忠雄', 'あんどうただお', '5520015', 'A005', '男', 19410913, '09055555555');
+  ,('山田太郎', 'やまだたろう', '8000000', 'A001', '男', 19920715, '07054545454')
+  ,('安藤忠雄', 'あんどうただお', '5520015', 'A005', '男', 19410913, '09055555555')
+  ,('伊東豊雄', 'いとうとよお', '9808577', 'A002', '男', 19410601, '07012345678')
+  ,('佐藤花子', 'さとうはなこ', '4443333', 'A006', '女', 19991028, '08062626262');
 
 
 COMMIT;

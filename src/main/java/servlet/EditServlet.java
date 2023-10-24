@@ -14,21 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.dao.AreaDAO;
 import model.dao.CustomerDAO;
+import model.dao.SearchDAO;
 import model.entity.AreaBean;
 import model.entity.CustomerBean;
 import validation.Validator;
 
 /**
- * Servlet implementation class CreateServlet
+ * Servlet implementation class EditServlet
  */
-@WebServlet("/create")
-public class CreateServlet extends HttpServlet {
+@WebServlet("/customer-edit")
+public class EditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateServlet() {
+    public EditServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,18 +38,31 @@ public class CreateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+		
+		SearchDAO dao = new SearchDAO();
 		try {
 			List<AreaBean> areaList = AreaDAO.areaList();
 			request.setAttribute("areaList", areaList);
+			CustomerBean customer = dao.IDSearchCustomer(id);
+			String url = "customerEdit.jsp";
+			if (customer == null) {
+				url = "menu.jsp";
+			}
+			request.setAttribute("customer", customer);
+			
+			//フォワード
+			RequestDispatcher rd = request.getRequestDispatcher(url);
+			rd.forward(request, response);
+			
+			
 		} catch (ClassNotFoundException | SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
-		    rd.forward(request, response);
-		}	
-		// フォワード
-		RequestDispatcher rd = request.getRequestDispatcher("create.jsp");
-	    rd.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("err.jsp");
+			rd.forward(request, response);
+		}
 	}
 
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -66,25 +80,27 @@ public class CreateServlet extends HttpServlet {
 		customer.setBirthday(request.getParameter("birthday"));
 		customer.setPhoneNumber(request.getParameter("phoneNumber"));
 		
+		
 		CustomerDAO dao = new CustomerDAO();
 		List<String> errors = new ArrayList<>();
 		
 		// データ登録のtry-catchエラー処理
 		String url = "create.jsp";
 		errors = Validator.CustomerValidator(customer);
+		request.setAttribute("customer", customer);
+		url = "customerEdit.jsp";
 		if(!errors.isEmpty()) {
-			url = "create.jsp";
+			
 			//リクエストスコープにエラーメッセージを保存
 			request.setAttribute("errors", errors);
 		} else {
 			try {
 				List<AreaBean> areaList = AreaDAO.areaList();
 				request.setAttribute("areaList", areaList);
-				dao.createCustomer(customer);
-				url = "Customer_List.jsp";
+				dao.editCustomer(customer);
+				request.setAttribute("success", "情報の変更が完了しました");
 			} catch(ClassNotFoundException | SQLException e) {
 				request.setAttribute("sqlFailed", "情報の登録に失敗しました"+e.getMessage());
-				url = "create.jsp";
 			}
 		}
 		
