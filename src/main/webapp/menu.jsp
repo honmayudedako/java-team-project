@@ -25,7 +25,7 @@
       		<input type="submit" name="button" value="顧客一覧" class="btn btn-primary fs-5">
         	<input type="submit" name="button" value="顧客登録" class="btn btn-primary fs-5">
         	<input type="submit" name="button" value="権限編集" class="btn btn-primary fs-5">
-        	<input type="submit" name="button" value="顧客編集" class="btn btn-primary fs-5">
+        	<!-- <input type="submit" name="button" value="顧客編集" class="btn btn-primary fs-5"> -->
       	</div>
         
       </form>

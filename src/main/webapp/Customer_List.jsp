@@ -25,12 +25,13 @@ System.out.println(customerList);
 	<%@ include file="/WEB-INF/include/header.jsp"%>
 	<div class="container">
 		<h1>顧客一覧</h1>
-		<form action="customer-list" method="post" class="d-flex w-50 justify-content-center mx-auto mb-4">
+		<form action="customer-list" method="post"
+			class="d-flex w-50 justify-content-center mx-auto mb-4">
 			<input type="text" name="searchWord" class="form-control w-75 mx-2">
 			<button type="submit" name="button" value="検索"
 				class="btn btn-primary">検索</button>
 		</form>
-		
+
 
 		<%
 		if (customerList != null) {
@@ -45,6 +46,7 @@ System.out.println(customerList);
 				<td>かな</td>
 				<td>性別</td>
 				<td></td>
+				<td></td>
 			</tr>
 
 			<%
@@ -56,10 +58,26 @@ System.out.println(customerList);
 				<td><%=customer.getNameKana()%></td>
 
 				<td><%=customer.getGender()%></td>
-				<input type="hidden" name="customerId" value="<%=customer.getId()%>"
-					action="customer-detail">
 
-				<td><button type="submit" name="button" value="詳細" class="btn btn-primary">詳細</button></td>
+
+				<td class="">
+					<!-- 詳細画面が完成後、ボタンのリンク先を変更 -->
+					<form action="customer-edit" method="get">
+						<input type="hidden" name="id" value="<%=customer.getId()%>"
+							action="customer-detail">
+						<button type="submit" name="button" value="edit"
+							class="btn btn-outline-success">編集</button>
+					</form> 
+				</td>
+				<!-- 詳細画面が完成後削除する -->
+				<td>
+					<form action="customer-delete" method="get">
+						<input type="hidden" name="id" value="<%=customer.getId()%>"
+							action="customer-detail">
+						<button type="submit" name="button" value="delete"
+							class="btn btn-outline-danger">削除</button>
+					</form>
+				</td>
 			</tr>
 			<%
 			}
@@ -71,7 +89,7 @@ System.out.println(customerList);
 		}
 		%>
 
-			<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
+		<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
 
 	</div>
 
