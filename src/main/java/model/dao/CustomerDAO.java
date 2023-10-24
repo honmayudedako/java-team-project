@@ -39,7 +39,7 @@ public class CustomerDAO {
 	public void editCustomer(CustomerBean customer) throws ClassNotFoundException, SQLException {
 
 		// SQL文-編集
-		String sql = "UPDATE m_customer SET customer_name = ?, customer_name_kana = ? , post_code = ?, area_code = ?, gender = ?, birthday = ?, phone_number = ? where customer_id = 1";
+		String sql = "UPDATE m_customer SET customer_name = ?, customer_name_kana = ? , post_code = ?, area_code = ?, gender = ?, birthday = ?, phone_number = ? where customer_id = ?";
 
 		// try-with-resourcesを使用し、データベース接続確立とプリペアドステートメントを取得
 		try (Connection con = ConnectionManager.getConnection();
@@ -53,6 +53,7 @@ public class CustomerDAO {
 			pstmt.setString(5, customer.getGender());
 			pstmt.setString(6, customer.getBirthday());
 			pstmt.setString(7, customer.getPhoneNumber());
+			pstmt.setInt(8, customer.getId());
 
 			// SQL文の実行
 			pstmt.executeUpdate();

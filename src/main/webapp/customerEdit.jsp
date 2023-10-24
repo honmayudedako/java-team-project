@@ -110,10 +110,10 @@ String id = request.getParameter("id");
 				</tr>
 			</table>
 			<div class="d-flex justify-content-end">
-				<input type="submit" value="顧客登録確定" class="btn btn-primary">
+				<input type="submit" value="編集完了" class="btn btn-success">
 				<input type="reset" value="クリア" class="btn btn-outline-primary mx-2">
 			</div>
-			<input type="hidden" name="customerId" value="<%= id %>">
+			<input type="hidden" name="customerId" value="<%= customer.getId() %>">
 		</form>
 		<div class="mt-2">
 			<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
