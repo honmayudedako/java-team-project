@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,12 +48,11 @@ public class LogoutServlet extends HttpServlet {
 		UserBean user = new UserBean();
 		user.setAuthenticated(false);
 		
-		// ログインページへリダイレクト
-//		String url = "login.jsp";
-//		RequestDispatcher rd = request.getRequestDispatcher(url);
-//		rd.forward(request, response);
+		//request.setAttribute("logoutMessage", "ログアウトしました");
 		
-		response.sendRedirect(request.getContextPath() + "/login");
+		// ログインページへリダイレクト
+		String logoutMessage =  "logout";
+		response.sendRedirect(request.getContextPath() + "/login?logoutMessage=" + URLEncoder.encode(logoutMessage, "UTF-8"));
 	}
 
 }
