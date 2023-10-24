@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.entity.CustomerBean;
+
 public class CustomerDAO {
 	
  CustomerBean checkLogin(String id, String name, String nameKana, String postCode, String areaCode, String gender, String birthday, String phoneNumber, String insertDatetime, String updateDatetime) throws ClassNotFoundException, SQLException {
@@ -35,17 +37,17 @@ public class CustomerDAO {
 			
       // 一致する情報がデータベースにあれば、CustomerBeanをインスタンス化し、各カラムの値をインスタンスにセット
       if (res.next()) {
-        customer = new CustomerBean();
-        customer.setUserId(res.getString("cusomer_id"));
-        customer.setPassword(res.getString("customer_name"));
-        customer.setUserId(res.getString("customer_name_kana"));
-        customer.setPassword(res.getString("post_code"));
-        customer.setUserId(res.getString("area_code"));
-        customer.setPassword(res.getString("gender"));
-        customer.setUserId(res.getString("birthday"));
-        customer.setPassword(res.getString("phone_number"));
-        customer.setUserId(res.getString("insert_datetime"));
-        customer.setPassword(res.getString("UPDATE_datetime"));
+        CustomerBean customer = new CustomerBean();
+        customer.setId(res.getInt("id"));
+        customer.setName(res.getString("name"));
+        customer.setNameKana(res.getString("nameKana"));
+        customer.setPostCode(res.getString("postCode"));
+        customer.setAreaCode(res.getString("areaCode"));
+        customer.setGender(res.getString("gender"));
+        customer.setBirthday(res.getString("birthday"));
+        customer.setPhoneNumber(res.getString("phoneNumber"));
+        customer.setInsertDatetime(res.getString("insertDatetime"));
+        customer.setUpdateTime(res.getString("updateDatetime"));
       }
     }
     return customer;
