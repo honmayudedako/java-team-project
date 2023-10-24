@@ -11,7 +11,7 @@ public class CustomerBean {
 	private String birthday;
 	private String phoneNumber;
 	private String insertDateTime;
-	private String updateDateTime; 
+	private String updateDateTime;
 			
 	public CustomerBean(){}
 	
