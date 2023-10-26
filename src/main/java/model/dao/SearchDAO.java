@@ -41,7 +41,7 @@ public class SearchDAO {
 		return customerList;
 	}
 
-	public CustomerBean IDSearchCustomer(String id) throws ClassNotFoundException, SQLException {
+	public CustomerBean IDSearchCustomer(int id) throws ClassNotFoundException, SQLException {
 		// SQL文 顧客のIDで検索
 		String sql = "SELECT * FROM m_customer WHERE customer_id = ?";
 
@@ -52,7 +52,7 @@ public class SearchDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 
 			// プレースホルダに値をセット
-			pstmt.setString(1, id);
+			pstmt.setInt(1, id);
 
 			// SQL文の実行の結果をresに代入
 			ResultSet res = pstmt.executeQuery();

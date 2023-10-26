@@ -17,18 +17,20 @@ import model.entity.CustomerBean;
 
 @WebServlet("/customer-list")
 public class SearchServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// リクエストのエンコーディング
 		request.setCharacterEncoding("UTF-8");
 
 		// 一覧ページへリダイレクト
-					String url = "Customer_List.jsp";
-					RequestDispatcher rd = request.getRequestDispatcher(url);
-					rd.forward(request, response);
+		String url = "Customer_List.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
 
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// リクエストのエンコーディング
 		request.setCharacterEncoding("UTF-8");
 
@@ -47,7 +49,7 @@ public class SearchServlet extends HttpServlet {
 			String url = "Customer_List.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(url);
 			rd.forward(request, response);
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("該当しません");
 			// エラーページへリダイレクト
@@ -55,6 +57,6 @@ public class SearchServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(url);
 			rd.forward(request, response);
 		}
-		
+
 	}
 }

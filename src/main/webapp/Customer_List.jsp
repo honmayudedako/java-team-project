@@ -3,7 +3,6 @@
 <%@ page import="java.util.List,model.entity.CustomerBean"%>
 <%
 List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("customerList");
-System.out.println(customerList);
 %>
 <!DOCTYPE html>
 <html>
