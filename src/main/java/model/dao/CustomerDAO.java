@@ -115,12 +115,9 @@ public class CustomerDAO {
 
 			// プレースホルダに値をセット
 			pstmt.setString(1, customerId);
-
 			// SQL文の実行
 			pstmt.executeUpdate();
 
 		}
-
 	}
-
 }

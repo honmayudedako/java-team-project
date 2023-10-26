@@ -34,19 +34,24 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		
-		//String id = "1";
-		SearchDAO dao = new SearchDAO();
+		int searchId = 0;
 		try {
-			
-			CustomerBean customer = dao.IDSearchCustomer(id);
+			searchId = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			RequestDispatcher rd = request.getRequestDispatcher("Customer_List.jsp");
+			rd.forward(request, response);
+		}
+		
+		SearchDAO dao = new SearchDAO();
+		try {			
+			CustomerBean customer = dao.IDSearchCustomer(searchId);
 			
 			String url = "customerDelete.jsp";
 			if (customer == null) {
 				url = "menu.jsp";
 			}
 			request.setAttribute("customer", customer);
-			System.out.println(id);
+
 			//フォワード
 			RequestDispatcher rd = request.getRequestDispatcher(url);
 			rd.forward(request, response);

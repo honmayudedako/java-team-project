@@ -40,11 +40,19 @@ public class EditServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//String id = request.getParameter("id");
 		String id = request.getParameter("id");
+		int searchId = 0;
+		try {
+			searchId = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			RequestDispatcher rd = request.getRequestDispatcher("Customer_List.jsp");
+			rd.forward(request, response);
+		}
+		
 		SearchDAO dao = new SearchDAO();
 		try {
 			List<AreaBean> areaList = AreaDAO.areaList();
 			request.setAttribute("areaList", areaList);
-			CustomerBean customer = dao.IDSearchCustomer(id);
+			CustomerBean customer = dao.IDSearchCustomer(searchId);
 			String url = "customerEdit.jsp";
 			if (customer == null) {
 				url = "menu.jsp";
