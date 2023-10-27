@@ -235,7 +235,8 @@ grant codeBase "file:${catalina.home}/webapps/host-manager/-" {
 //
 // The permissions granted to the context root directory apply to JSP pages.
 // grant codeBase "file:${catalina.base}/webapps/examples/-" {
-//      permission java.net.SocketPermission "dbhost.mycompany.com:5432", "connect";
+//      permission 
+.SocketPermission "dbhost.mycompany.com:5432", "connect";
 //      permission java.net.SocketPermission "*.noaa.gov:80", "connect";
 // };
 //

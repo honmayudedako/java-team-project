@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.dao.CustomerDAO;
-import model.dao.SearchDAO;
 import model.entity.CustomerBean;
 
 /**
@@ -42,7 +41,7 @@ public class DeleteServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
-		SearchDAO dao = new SearchDAO();
+		CustomerDAO dao = new CustomerDAO();
 		try {			
 			CustomerBean customer = dao.IDSearchCustomer(searchId);
 			
