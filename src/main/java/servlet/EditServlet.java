@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.dao.AreaDAO;
 import model.dao.CustomerDAO;
-import model.dao.SearchDAO;
 import model.entity.AreaBean;
 import model.entity.CustomerBean;
 import validation.Validator;
@@ -48,7 +47,7 @@ public class EditServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
-		SearchDAO dao = new SearchDAO();
+		CustomerDAO dao = new CustomerDAO();
 		try {
 			List<AreaBean> areaList = AreaDAO.areaList();
 			request.setAttribute("areaList", areaList);

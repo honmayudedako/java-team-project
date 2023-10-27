@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
 <%@page import="model.entity.UserBean,java.net.*"%>
 <%
 String loginError = (String) request.getAttribute("loginError");
@@ -26,23 +26,14 @@ String logoutMessage = request.getParameter("logoutMessage");
 					style="width: 160px;">
 			</div>
 			<h1 class="text-center mt-4 mb-4">顧客管理システム</h1>
-			
 			<form action="login" method="post" class="login_form p-5 bg-light w-50 m-auto">
 			<h2 class="fs-5 text-center mt-2">ログイン</h2>
-				<%
-				if (logoutMessage != null) {
-				%><p class="my-2" style="color: red;">ログアウトしました</p>
-				<%
-				}
-				%>
-
-				<%
-				if (loginError != null) {
-				%><p class="my-2" style="color: red;"><%=loginError%></p>
-				<%
-				}
-				%>
-
+				<% if (logoutMessage != null) { %>
+				<p class="my-2" style="color: red;">ログアウトしました</p>
+				<%}%>	
+				<% if (loginError != null) { %>
+				<p class="my-2" style="color: red;"><%=loginError%></p>
+				<% } %>				
 				<input type="text" name="id" placeholder="ユーザーID" class=" mt-4 form-control">
 				<input type="password" name="password" placeholder="パスワード" class=" mt-4 form-control">
 				<br> <input type="submit" value="ログイン" class="d-block mx-auto btn btn-primary">

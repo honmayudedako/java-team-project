@@ -66,7 +66,6 @@ public class LoginServlet extends HttpServlet {
 		try {
 			// UserDAOクラスのcheckLoginメソッドを呼び出してユーザ情報を取得
 			UserBean user = dao.checkLogin(id, password);
-
 			// idとpasswordがデータベースに登録されていた場合
 			if (user != null) {
 				user.setAuthenticated(true);
@@ -75,27 +74,27 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", user);
 
 				//メニューページにリダイレクト
-				response.sendRedirect(request.getContextPath() + "/menu");
+				//response.sendRedirect(request.getContextPath() + "/menu");		
+				url = "menu.jsp";
 			} 
 			// idとpasswordが未入力の場合
 			else if (id == "" && password == "") {
 				request.setAttribute("loginError", "ログインIDとパスワードが未入力です");
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-				rd.forward(request, response);
+				url = "login.jsp";
 			}
 			// idとpasswordがデータベースに登録されていなかった場合
 			else {
 				request.setAttribute("loginError", "ログインID、またはパスワードが正しくありません");
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-				rd.forward(request, response);
+				url = "login.jsp";
 			}
+			RequestDispatcher rd = request.getRequestDispatcher(url);
+			rd.forward(request, response);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			url = "err.jsp"; // エラーページのパス
 			e.printStackTrace();
-			// 転送
 			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);
-		}
+			rd.forward(request, response);		
+		} 
 	}
 }

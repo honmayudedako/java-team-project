@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.SearchDAO;
+import model.dao.CustomerDAO;
 import model.entity.CustomerBean;
 
 @WebServlet("/customer-list")
@@ -37,7 +37,7 @@ public class SearchServlet extends HttpServlet {
 		// フォームから送信された値を取得
 		String searchWord = request.getParameter("searchWord");
 
-		SearchDAO dao = new SearchDAO(); // SearchDAOクラスをインスタンス化
+		CustomerDAO dao = new CustomerDAO(); // DAOクラスをインスタンス化
 
 		List<CustomerBean> customerList = new ArrayList<>();
 

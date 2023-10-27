@@ -37,15 +37,16 @@ public class CreateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		try {
 			List<AreaBean> areaList = AreaDAO.areaList();
-			request.setAttribute("areaList", areaList);
+			request.setAttribute("areaList", areaList);	
 		} catch (ClassNotFoundException | SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
-		    rd.forward(request, response);
+			String url = "menu.jsp";
 		}	
+		String url = "create.jsp";
 		// フォワード
-		RequestDispatcher rd = request.getRequestDispatcher("create.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher(url);
 	    rd.forward(request, response);
 	}
 
