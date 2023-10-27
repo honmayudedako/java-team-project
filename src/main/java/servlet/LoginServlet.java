@@ -60,6 +60,7 @@ public class LoginServlet extends HttpServlet {
 		String id = request.getParameter("id"); // ユーザID
 		String password = request.getParameter("password"); // パスワード
 		String url = "menu.jsp"; // メニュー画面のパス
+		String loginError = "";
 		UserDAO dao = new UserDAO(); // UserDAOクラスをインスタンス化
 
 		// try-catchで例外処理
@@ -73,28 +74,25 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 
-				//メニューページにリダイレクト
-				//response.sendRedirect(request.getContextPath() + "/menu");		
+				//メニューページにリダイレクト		
 				url = "menu.jsp";
 			} 
 			// idとpasswordが未入力の場合
 			else if (id == "" && password == "") {
-				request.setAttribute("loginError", "ログインIDとパスワードが未入力です");
+				loginError = "ログインIDとパスワードが未入力です";
 				url = "login.jsp";
 			}
 			// idとpasswordがデータベースに登録されていなかった場合
 			else {
-				request.setAttribute("loginError", "ログインID、またはパスワードが正しくありません");
+				loginError = "ログインID、またはパスワードが正しくありません";
 				url = "login.jsp";
 			}
-			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);
-
+			request.setAttribute("loginError", loginError);
 		} catch (ClassNotFoundException | SQLException e) {
 			url = "err.jsp"; // エラーページのパス
 			e.printStackTrace();
-			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);		
 		} 
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);		
 	}
 }

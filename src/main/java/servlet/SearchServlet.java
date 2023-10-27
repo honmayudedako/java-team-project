@@ -23,7 +23,7 @@ public class SearchServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		// 一覧ページへリダイレクト
-		String url = "Customer_List.jsp";
+		String url = "list.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 
@@ -40,23 +40,18 @@ public class SearchServlet extends HttpServlet {
 		CustomerDAO dao = new CustomerDAO(); // DAOクラスをインスタンス化
 
 		List<CustomerBean> customerList = new ArrayList<>();
-
+		String url = "list.jsp";
 		// データ登録のtry-catchエラー処理
 		try {
 			customerList = dao.SearchCustomer(searchWord);
 			request.setAttribute("customerList", customerList);
 			// 一覧ページへリダイレクト
-			String url = "Customer_List.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);
-
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("該当しません");
 			// エラーページへリダイレクト
-			String url = "err.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);
+			url = "err.jsp";
 		}
-
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
 	}
 }

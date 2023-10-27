@@ -37,17 +37,17 @@ public class CreateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String url = "create.jsp";
 		try {
 			List<AreaBean> areaList = AreaDAO.areaList();
 			request.setAttribute("areaList", areaList);	
 		} catch (ClassNotFoundException | SQLException e) {
-			String url = "menu.jsp";
-		}	
-		String url = "create.jsp";
-		// フォワード
-		RequestDispatcher rd = request.getRequestDispatcher(url);
-	    rd.forward(request, response);
+			url = "err.jsp";
+		} finally {
+			// フォワード
+			RequestDispatcher rd = request.getRequestDispatcher(url);
+		    rd.forward(request, response);
+		}
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class CreateServlet extends HttpServlet {
 		String url = "create.jsp";
 		errors = Validator.CustomerValidator(customer);
 		if(!errors.isEmpty()) {
-			url = "create.jsp";
+			//url = "create.jsp";
 			//リクエストスコープにエラーメッセージを保存
 			request.setAttribute("errors", errors);
 		} else {
@@ -82,10 +82,10 @@ public class CreateServlet extends HttpServlet {
 				List<AreaBean> areaList = AreaDAO.areaList();
 				request.setAttribute("areaList", areaList);
 				dao.createCustomer(customer);
-				url = "Customer_List.jsp";
+				url = "list.jsp";
 			} catch(ClassNotFoundException | SQLException e) {
 				request.setAttribute("sqlFailed", "情報の登録に失敗しました"+e.getMessage());
-				url = "create.jsp";
+				//url = "create.jsp";
 			}
 		}
 		

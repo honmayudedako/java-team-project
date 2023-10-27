@@ -33,32 +33,36 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
+		String url = "list.jsp";
 		int searchId = 0;
 		try {
 			searchId = Integer.parseInt(id);
 		} catch (NumberFormatException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("Customer_List.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("Customer_List.jsp");
+//			rd.forward(request, response);
 		}
 		
 		CustomerDAO dao = new CustomerDAO();
 		try {			
 			CustomerBean customer = dao.IDSearchCustomer(searchId);
 			
-			String url = "customerDelete.jsp";
+			url = "delete.jsp";
 			if (customer == null) {
 				url = "menu.jsp";
 			}
 			request.setAttribute("customer", customer);
 
 			//フォワード
-			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher(url);
+//			rd.forward(request, response);
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("err.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("err.jsp");
+//			rd.forward(request, response);
+			url = "err.jsp";
 		}
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
 	}
 
 	/**
