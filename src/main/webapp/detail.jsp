@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" import="model.entity.CustomerBean"%>
+<%
+CustomerBean customer = (CustomerBean) request.getAttribute("customer");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,62 +13,70 @@
 	href="./assets/stylesheets/object/projects/detail.css">
 </head>
 <body>
-	<%-- <%@ include file="/WEB-INF/include/header.jsp"%> --%>
-	<div>
-		<h2>顧客詳細</h2>
-		<table>
-			<thead>
+	<%@ include file="/WEB-INF/include/header.jsp"%>
+	<main>
+		<div>
+			<h2>顧客詳細</h2>
+			<table>
 				<tr>
-					<th>顧客ID</th>
-					<th>氏名</th>
-					<th>かな</th>
-					<th>性別</th>
-					<th>郵便番号</th>
-					<th>地区</th>
-					<th>性別</th>
-					<th>生年月日</th>
-					<th>電話番号</th>
-					<th>登録日時</th>
-					<th>更新日時</th>
+					<td>顧客ID</td>
+					<td><%=customer.getId()%></td>
 				</tr>
-			</thead>
-			<tbody>
-				<% List<CustomerBean> customerDetailList = (List<CustomerBean>)request.getAttribute("customerDetailList"); %>
-				<%
-            for (CustomerBean customerDetail : customerDetailList) {
-        	%>
 				<tr>
-					<td><%=customerDetail.getId()%></td>
-					<td><%=customerDetail.getName()%></td>
-					<td><%=customerDetail.getNameKana()%></td>
-					<td><%=customerDetail.getPostCode()%></td>
-					<td><%=customerDetail.getAreaCode()%></td>
-					<td><%=customerDetail.getGender()%></td>
-					<td><%=customerDetail.getBirthday()%></td>
-					<td><%=customerDetail.getPhoneNumber()%></td>
-					<td><%=customerDetail.getInsertDateTime()%></td>
-					<td><%=customerDetail.getUpdateDateTime()%></td>
+					<td>氏名</td>
+					<td><%=customer.getName()%></td>
+				</tr>
+				<tr>
+					<td>かな</td>
+					<td><%=customer.getNameKana()%></td>
+				</tr>
+				<tr>
+					<td>郵便番号</td>
+					<td><%=customer.getPostCode()%></td>
+				</tr>
+				<tr>
+					<td>地区</td>
+					<td><%=customer.getAreaCode()%></td>
+				</tr>
+				<tr>
+					<td>性別</td>
+					<td><%=customer.getGender()%></td>
+				</tr>
+				<tr>
+					<%
+					String birthday = customer.getBirthday();
+					String birthdayFormat = birthday.replace("-", "");
+					%>
+					<td>生年月日</td>
+					<td><%=birthdayFormat%></td>
+				</tr>
+				<tr>
+					<td>電話番号</td>
+					<td><%=customer.getPhoneNumber()%></td>
+				</tr>
+				<tr>
 					<td>
 						<form method="post" action="customer-edit">
-							<input type="submit" name="button" value="編集"> <input
-								type="hidden" name="customerId"
-								value="">
-						</form>
-					</td>
-					<td>
-						<form method="post" action="customer-delete">
-							<input type="submit" name="button" value="削除"> <input
-								type="hidden" name="customerId"
-								value="">
+							<input type="hidden" name="customerId"
+								value="<%=customer.getId()%>"> <input type="submit"
+								name="button" value="編集">
 						</form>
 					</td>
 				</tr>
-			</tbody>
-		</table>
-		<form method="post" action="customer-list">
-			<input type="submit" name="button" value="顧客一覧">
-		</form>
-	</div>
-</body>
+				<tr>
+					<td>
+						<form method="post" action="customer-delete">
+							<input type="hidden" name="customerId"
+								value="<%=customer.getId()%>"> <input type="submit"
+								name="button" value="削除">
+						</form>
+					</td>
+				</tr>
+			</table>
+			<form method="post" action="customer-list">
+				<input type="submit" name="button" value="顧客一覧">
+			</form>
+		</div>
+	</main>
 </body>
 </html>
