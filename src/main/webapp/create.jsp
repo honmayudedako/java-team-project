@@ -98,7 +98,7 @@ String sqlFailed = (String) request.getAttribute("sqlFailed");
 
 		</form>
 		<div class="mt-2">
-			<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
+			<a href="menu" class="btn btn-outline-secondary">メニュー画面へ</a>
 		</div>
 	</main>
 

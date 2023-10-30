@@ -70,8 +70,16 @@ public class CreateServlet extends HttpServlet {
 		CustomerDAO dao = new CustomerDAO();
 		List<String> errors = new ArrayList<>();
 		
-		// データ登録のtry-catchエラー処理
 		String url = "create.jsp";
+		
+		try {
+			List<AreaBean> areaList = AreaDAO.areaList();
+			request.setAttribute("areaList", areaList);	
+		} catch (ClassNotFoundException | SQLException e) {
+			url = "err.jsp";
+		} 
+		
+		// データ登録のtry-catchエラー処理	
 		errors = Validator.CustomerValidator(customer);
 		if(!errors.isEmpty()) {
 			//url = "create.jsp";
@@ -79,8 +87,6 @@ public class CreateServlet extends HttpServlet {
 			request.setAttribute("errors", errors);
 		} else {
 			try {
-				List<AreaBean> areaList = AreaDAO.areaList();
-				request.setAttribute("areaList", areaList);
 				dao.createCustomer(customer);
 				url = "list.jsp";
 			} catch(ClassNotFoundException | SQLException e) {
@@ -88,7 +94,6 @@ public class CreateServlet extends HttpServlet {
 				//url = "create.jsp";
 			}
 		}
-		
 		// フォワード
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 	    rd.forward(request, response);
