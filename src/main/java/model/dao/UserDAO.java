@@ -44,4 +44,27 @@ public class UserDAO {
 		return user;
 	}
 
-}
+	    public UserBean setUserAuthority(String id, String authorityCode) throws ClassNotFoundException, SQLException {
+
+	    	UserBean user = null;
+	        String sql = "UPDATE m_user SET authority_code = ? WHERE user_id = ?";
+
+	        try (Connection con = ConnectionManager.getConnection();
+					PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+				// プレースホルダに値をセット
+				pstmt.setString(1, id);
+				pstmt.setString(1, authorityCode);
+
+				ResultSet res = pstmt.executeQuery();
+
+				if (res.next()) {
+					user = new UserBean();
+					user.setUserId(res.getString("user_id"));
+					user.setUserId(res.getString("authority_code"));
+				}
+			}
+			return user;
+		}
+		
+	}
