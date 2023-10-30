@@ -88,7 +88,7 @@ List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("cus
 		}
 		%>
 
-		<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
+		<a href="menu" class="btn btn-outline-secondary">メニュー画面へ</a>
 
 	</div>
 

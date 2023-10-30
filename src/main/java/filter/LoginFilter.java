@@ -20,12 +20,12 @@ import model.entity.UserBean;
  * Servlet Filter implementation class AuthFilter
  */
 @WebFilter("/*")
-public class AuthFilter extends HttpFilter implements Filter {
+public class LoginFilter extends HttpFilter implements Filter {
        
     /**
      * @see HttpFilter#HttpFilter()
      */
-    public AuthFilter() {
+    public LoginFilter() {
         super();
         // TODO Auto-generated constructor stub
     }
