@@ -27,7 +27,7 @@ UserBean user = (UserBean) session.getAttribute("user");
 	<%@ include file="/WEB-INF/include/header.jsp"%>
 	<main>
 		<div>
-			<h2>顧客詳細</h2>
+			<h2 style="margin-bottom:20px">顧客詳細</h2>
 			<table class="detaile-table">
 				<tr>
 					<td>顧客ID</td>
@@ -77,7 +77,7 @@ UserBean user = (UserBean) session.getAttribute("user");
 			</table>
 			<form method="post" action="customer-list">
 				<input type="submit" name="button" class="btn btn-outline-secondary"
-					value="顧客一覧">
+					value="顧客一覧" style="margin-top:30px">
 			</form>
 		</div>
 	</main>

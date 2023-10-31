@@ -21,16 +21,16 @@ UserBean user = (UserBean) session.getAttribute("user");
 			<form action="authority-edit" method="post">
 				<div class="editBox" style="text-align: center;">
 					<div>
-						<label for="userId">ユーザー名</label>
-						<select id="userId" name="userId">
+						<label for="userId" class="mt-5">ユーザー名</label>
+						<select id="userId" name="userId" class="form-select w-25 m-auto">
 							<option value="readerU">readerU</option>
 							<option value="editU">editU</option>
 							<option value="managerU">managerU</option>
 						</select>
 					</div>
 					<div>
-						<label for="authorityCode">権限</label>
-						<select id="authorityCode" name="authorityCode">
+						<label for="authorityCode" class="mt-2">権限</label>
+						<select id="authorityCode" name="authorityCode" class="form-select w-25 m-auto">
 							<option value="A0">閲覧者</option>
 							<option value="A1">編集者</option>
 							<option value="A2">管理者</option>
@@ -38,9 +38,9 @@ UserBean user = (UserBean) session.getAttribute("user");
 					</div>
 				</div>
 				<div class="edit-submitBox">
-					<input type="submit" name="button" value="権限編集確定">
+					<input type="submit" name="button" value="権限編集確定" class="mt-3">
 				</div>
-				<a href="menu.jsp">メニュー画面へ</a>
+				<a href="menu.jsp" class="btn btn-outline-secondary mt-3">メニュー画面へ</a>
 			</form>
 		</main>
 	</div>
