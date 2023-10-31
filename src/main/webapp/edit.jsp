@@ -56,67 +56,81 @@ String id = request.getParameter("id");
 				<tr>
 					<td>氏名</td>
 					<td><input type="text" name="customerName" placeholder="山田太郎"
-						required="required" class="form-control" value="<%=customer.getName() %>"></td>
+						required="required" class="form-control"
+						value="<%=customer.getName()%>"></td>
 				</tr>
 				<tr>
 					<td>かな</td>
 					<td><input type="text" name="customerNameKana"
-						placeholder="やまだたろう" required="required" class="form-control" value="<%=customer.getNameKana() %>"></td>
+						placeholder="やまだたろう" required="required" class="form-control"
+						value="<%=customer.getNameKana()%>"></td>
 				</tr>
 				<tr>
 					<td>郵便番号</td>
 					<td><input type="text" name="postCode" placeholder="8120011"
-						required="required" class="form-control" value="<%=customer.getPostCode() %>"></td>
+						required="required" class="form-control"
+						value="<%=customer.getPostCode()%>"></td>
 				</tr>
 				<tr>
 					<td>地区</td>
 					<td><select type="text" name="areaCode" class="form-select">
 							<%
 							for (AreaBean area : areaList) {
-							String selected = area.getCode().equals(customer.getAreaCode()) ? "selected" : ""; 
+								String selected = area.getCode().equals(customer.getAreaCode()) ? "selected" : "";
 							%>
-							<option value="<%=area.getCode()%>" <%=selected %>><%=area.getName()%></option>
+							<option value="<%=area.getCode()%>" <%=selected%>><%=area.getName()%></option>
 							<%
 							}
 							%>
 					</select></td>
 				</tr>
 				<tr>
-				<% 
-				String gender = customer.getGender();
-				if ( gender != null) {
-					String manChecked = gender.equals("男") ? "checked" : "";
-					String womanChecked = gender.equals("女") ? "checked" : "";
-				
-				%>
+					<%
+					String gender = customer.getGender();
+					if (gender != null) {
+						String manChecked = gender.equals("男") ? "checked" : "";
+						String womanChecked = gender.equals("女") ? "checked" : "";
+					%>
 					<td>性別</td>
 					<td><input type="radio" name="gender" value="男"
-						class="form-check-input mx-1" <%= manChecked %>>男 
-						<input type="radio"
-						name="gender" value="女" class="form-check-input mx-1" <%= womanChecked %>>女</td>
+						class="form-check-input mx-1" <%=manChecked%>>男 <input
+						type="radio" name="gender" value="女" class="form-check-input mx-1"
+						<%=womanChecked%>>女</td>
 				</tr>
-				<% } %>
+				<%
+				}
+				%>
 				<tr>
-				<% String birthday = customer.getBirthday();
-				String birthdayFormat = birthday.replace("-", ""); %>
+					<%
+					String birthday = customer.getBirthday();
+					String birthdayFormat = birthday.replace("-", "");
+					%>
 					<td>生年月日</td>
 					<td><input type="text" name="birthday" placeholder="19850101"
-						required="required" class="form-control" value="<%=birthdayFormat %>"></td>
+						required="required" class="form-control"
+						value="<%=birthdayFormat%>"></td>
 				</tr>
 				<tr>
 					<td>電話番号</td>
 					<td><input type="text" name="phoneNumber"
-						placeholder="09012345678" required="required" class="form-control" value="<%=customer.getPhoneNumber() %>"></td>
+						placeholder="09012345678" required="required" class="form-control"
+						value="<%=customer.getPhoneNumber()%>"></td>
 				</tr>
 			</table>
 			<div class="d-flex justify-content-end">
-				<input type="submit" value="編集完了" class="btn btn-success">
-				<input type="reset" value="クリア" class="btn btn-outline-primary mx-2">
+				<input type="submit" value="編集完了" class="btn btn-success"> <input
+					type="reset" value="クリア" class="btn btn-outline-primary mx-2">
 			</div>
-			<input type="hidden" name="customerId" value="<%= customer.getId() %>">
+			<input type="hidden" name="customerId"
+				value="<%=customer.getId()%>">
 		</form>
-		<div class="mt-2">
-			<a href="/EmployeeManager_practice/customer-list" class="btn btn-outline-secondary">顧客一覧画面へ</a>
+		<div class="mt-2 d-flex">
+			<form action="customer-detail" method="get" class="mx-2">
+				<input type="hidden" name="id" value="<%=customer.getId()%>"
+					action="customer-detail">
+				<button type="submit" name="button" value="edit"
+					class="btn btn-outline-secondary">前の画面へ戻る</button>
+			</form>
 			<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
 		</div>
 	</main>
