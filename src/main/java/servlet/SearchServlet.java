@@ -21,7 +21,9 @@ public class SearchServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// リクエストのエンコーディング
 		request.setCharacterEncoding("UTF-8");
-
+		
+		boolean searchResult = true; 
+		request.setAttribute("searchResult", searchResult);
 		// 一覧ページへリダイレクト
 		String url = "list.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(url);
@@ -44,7 +46,12 @@ public class SearchServlet extends HttpServlet {
 		// データ登録のtry-catchエラー処理
 		try {
 			customerList = dao.SearchCustomer(searchWord);
+			boolean searchResult = true; 
+			if (customerList == null || customerList.isEmpty()) {
+				searchResult = false; 
+			}
 			request.setAttribute("customerList", customerList);
+			request.setAttribute("searchResult", searchResult);
 			// 一覧ページへリダイレクト
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("該当しません");

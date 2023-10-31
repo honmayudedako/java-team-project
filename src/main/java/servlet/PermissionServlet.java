@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.UserDAO;
+import model.entity.UserBean;
 
 @WebServlet("/permission")
 public class PermissionServlet extends HttpServlet {
@@ -19,7 +21,14 @@ public class PermissionServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// 一覧ページへリダイレクト
-		String url = "menu.jsp";
+		String url = "permission.jsp";
+		
+		//もしも権限が閲覧者ならばメニューページへリダイレクト
+		HttpSession session = request.getSession();
+		UserBean user = (UserBean) session.getAttribute("user");
+		if (user.getAuthorityCode().equals("A0") || user.getAuthorityCode().equals("A1")) {
+			url = "menu.jsp";
+		}
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 

@@ -3,6 +3,7 @@
 <%@ page import="java.util.List,model.entity.CustomerBean"%>
 <%
 List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("customerList");
+boolean searchResult = (boolean) request.getAttribute("searchResult");
 %>
 <!DOCTYPE html>
 <html>
@@ -84,9 +85,11 @@ List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("cus
 			<!-- </tbody> -->
 		</table>
 
-		<%
-		}
-		%>
+		<% } %>
+		
+		<% if(!searchResult){ %>
+		<p>情報が見つかりません</p>
+		<% } %>
 
 		<a href="menu" class="btn btn-outline-secondary">メニュー画面へ</a>
 

@@ -63,7 +63,7 @@ public class CustomerDAO {
 		}
 		return;
 	}
-	
+
 	CustomerBean checkLogin(String id, String name, String nameKana, String postCode, String areaCode, String gender,
 			String birthday, String phoneNumber, String insertDatetime, String updateDatetime)
 			throws ClassNotFoundException, SQLException {
@@ -109,7 +109,7 @@ public class CustomerDAO {
 		}
 		return customer;
 	}
-	
+
 	//顧客を削除
 	public static void deleteCustomer(String customerId) throws ClassNotFoundException, SQLException {
 		String sql = "DELETE FROM m_customer WHERE customer_id = ?";
@@ -123,7 +123,7 @@ public class CustomerDAO {
 
 		}
 	}
-	
+
 	// 顧客一覧を取得
 	public List<CustomerBean> SearchCustomer(String searchWord) throws ClassNotFoundException, SQLException {
 		// SQL文 顧客の名前で検索
@@ -151,10 +151,11 @@ public class CustomerDAO {
 				customer.setGender(res.getString("gender"));
 				customerList.add(customer);
 			}
+
 		}
 		return customerList;
 	}
-	
+
 	//IDで顧客を取得
 	public CustomerBean IDSearchCustomer(int id) throws ClassNotFoundException, SQLException {
 		// SQL文 顧客のIDで検索

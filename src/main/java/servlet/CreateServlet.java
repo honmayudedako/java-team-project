@@ -11,11 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.AreaDAO;
 import model.dao.CustomerDAO;
 import model.entity.AreaBean;
 import model.entity.CustomerBean;
+import model.entity.UserBean;
 import validation.Validator;
 
 /**
@@ -38,6 +40,14 @@ public class CreateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "create.jsp";
+		
+		//もしも権限が閲覧者ならばメニューページへリダイレクト
+		HttpSession session = request.getSession();
+		UserBean user = (UserBean) session.getAttribute("user");
+		if (user.getAuthorityCode().equals("A0")) {
+			url = "menu.jsp";
+		}
+		
 		try {
 			List<AreaBean> areaList = AreaDAO.areaList();
 			request.setAttribute("areaList", areaList);	

@@ -96,6 +96,7 @@ String id = request.getParameter("id");
 			<input type="hidden" name="customerId" value="<%=id%>">
 		</form>
 		<div class="mt-2">
+			<a href="/EmployeeManager_practice/customer-list" class="btn btn-outline-secondary">顧客一覧画面へ</a>
 			<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
 		</div>
 	</main>

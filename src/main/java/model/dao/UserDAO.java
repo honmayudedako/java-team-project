@@ -39,6 +39,7 @@ public class UserDAO {
 				user = new UserBean();
 				user.setUserId(res.getString("user_id"));
 				user.setPassword(res.getString("password"));
+				user.setAuthorityCode(res.getString("authority_code"));
 			}
 		}
 		return user;

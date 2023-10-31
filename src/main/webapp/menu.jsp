@@ -23,9 +23,13 @@
       <form action="menu" method="post">
       	<div class="d-flex justify-content-around w-50 mx-auto">
       		<input type="submit" name="button" value="顧客一覧" class="btn btn-primary fs-5">
+      		
+      		<% if(user.getAuthorityCode().equals("A2") || user.getAuthorityCode().equals("A1") ) { %>
         	<input type="submit" name="button" value="顧客登録" class="btn btn-primary fs-5">
+        	<% } %>
+        	<% if(user.getAuthorityCode().equals("A2")) { %>
         	<input type="submit" name="button" value="権限編集" class="btn btn-primary fs-5">
-        	
+        	<% } %>
       	</div>
         
       </form>

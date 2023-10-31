@@ -20,7 +20,7 @@ CustomerBean customer = (CustomerBean) request.getAttribute("customer");
 			<table>
 				<tr>
 					<td>顧客ID</td>
-					<td><%=customer.getId()%></td>
+					
 				</tr>
 				<tr>
 					<td>氏名</td>
