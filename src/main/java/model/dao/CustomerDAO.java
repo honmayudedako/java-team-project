@@ -182,6 +182,8 @@ public class CustomerDAO {
 				customer.setBirthday(res.getString("birthday"));
 				customer.setPhoneNumber(res.getString("phone_number"));
 				customer.setGender(res.getString("gender"));
+				customer.setInsertDateTime(res.getString("insert_datetime"));
+				customer.setUpdateDateTime(res.getString("update_datetime"));
 
 			} else {
 				return null;
