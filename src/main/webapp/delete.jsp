@@ -95,8 +95,13 @@ String id = request.getParameter("id");
 			</div>
 			<input type="hidden" name="customerId" value="<%=id%>">
 		</form>
-		<div class="mt-2">
-			<a href="/EmployeeManager_practice/customer-list" class="btn btn-outline-secondary">顧客一覧画面へ</a>
+		<div class="mt-2 d-flex">
+			<form action="customer-detail" method="get" class="mx-2">
+				<input type="hidden" name="id" value="<%=customer.getId()%>"
+					action="customer-detail">
+				<button type="submit" name="button" value="edit"
+					class="btn btn-outline-secondary">前の画面へ戻る</button>
+			</form>
 			<a href="menu.jsp" class="btn btn-outline-secondary">メニュー画面へ</a>
 		</div>
 	</main>

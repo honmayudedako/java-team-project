@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List,model.entity.CustomerBean"%>
 <%
 List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("customerList");
-boolean searchResult = (boolean) request.getAttribute("searchResult");
 %>
+<%@ page import="java.util.List,model.entity.CustomerBean"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,23 +59,12 @@ boolean searchResult = (boolean) request.getAttribute("searchResult");
 
 				<td><%=customer.getGender()%></td>
 
-
 				<td class="">
-					<!-- 詳細画面が完成後、ボタンのリンク先を変更 -->
-					<form action="customer-edit" method="get">
+					<form action="customer-detail" method="get">
 						<input type="hidden" name="id" value="<%=customer.getId()%>"
 							action="customer-detail">
 						<button type="submit" name="button" value="edit"
-							class="btn btn-outline-success">編集</button>
-					</form> 
-				</td>
-				<!-- 詳細画面が完成後削除する -->
-				<td>
-					<form action="customer-delete" method="get">
-						<input type="hidden" name="id" value="<%=customer.getId()%>"
-							action="customer-detail">
-						<button type="submit" name="button" value="delete"
-							class="btn btn-outline-danger">削除</button>
+							class="btn btn-outline-success">詳細</button>
 					</form>
 				</td>
 			</tr>
@@ -85,11 +74,9 @@ boolean searchResult = (boolean) request.getAttribute("searchResult");
 			<!-- </tbody> -->
 		</table>
 
-		<% } %>
-		
-		<% if(!searchResult){ %>
-		<p>情報が見つかりません</p>
-		<% } %>
+		<%
+		}
+		%>
 
 		<a href="menu" class="btn btn-outline-secondary">メニュー画面へ</a>
 

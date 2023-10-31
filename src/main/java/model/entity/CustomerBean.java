@@ -10,6 +10,8 @@ public class CustomerBean {
 	private String gender;
 	private String birthday;
 	private String phoneNumber;
+	private String insertDateTime;
+	private String updateDateTime;
 
 	/*	public CustomerBean(String name, String nameKana, String postCode, String areaCode, String gender, String birthday,
 				String phoneNumber) {
@@ -90,6 +92,20 @@ public class CustomerBean {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public void setInsertDateTime(String insertDateTime) {
+		this.insertDateTime = insertDateTime;
+	}
+	public String getInsertDateTime() {
+		return this.insertDateTime;
+	}
+
+	public void setUpdateDateTime(String updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+	public String getUpdateDateTime() {
+		return this.updateDateTime;
 	}
 
 }

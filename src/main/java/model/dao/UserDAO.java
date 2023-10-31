@@ -45,27 +45,22 @@ public class UserDAO {
 		return user;
 	}
 
-	    public UserBean setUserAuthority(String id, String authorityCode) throws ClassNotFoundException, SQLException {
+	public static void setAuthority(String authorityCode, String userId) throws ClassNotFoundException, SQLException {
 
-	    	UserBean user = null;
-	        String sql = "UPDATE m_user SET authority_code = ? WHERE user_id = ?";
+		String sql = "UPDATE m_user SET authority_code = ? WHERE user_id = ?";
 
-	        try (Connection con = ConnectionManager.getConnection();
-					PreparedStatement pstmt = con.prepareStatement(sql)) {
+		// try-with-resourcesを使用し、データベース接続確立とプリペアドステートメントを取得
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-				// プレースホルダに値をセット
-				pstmt.setString(1, id);
-				pstmt.setString(1, authorityCode);
+			// プレースホルダに値をセット
+			pstmt.setString(1, authorityCode);
+			pstmt.setString(2, userId);
 
-				ResultSet res = pstmt.executeQuery();
-
-				if (res.next()) {
-					user = new UserBean();
-					user.setUserId(res.getString("user_id"));
-					user.setUserId(res.getString("authority_code"));
-				}
-			}
-			return user;
+			// SQL文の実行
+			pstmt.executeUpdate();
 		}
-		
+		return;
 	}
+
+}
