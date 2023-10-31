@@ -1,14 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" import="model.entity.CustomerBean"%>
+<%@page import="model.entity.UserBean"%>
 <%
 CustomerBean customer = (CustomerBean) request.getAttribute("customer");
 %>
+<%
+UserBean user = (UserBean) session.getAttribute("user");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>詳細画面</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="assets/stylesheets/app.css" type="text/css">
 <link rel="stylesheet"
 	href="./assets/stylesheets/object/projects/detail.css">
 </head>
@@ -17,44 +28,30 @@ CustomerBean customer = (CustomerBean) request.getAttribute("customer");
 	<main>
 		<div>
 			<h2>顧客詳細</h2>
-			<table>
+			<table class="detaile-table">
 				<tr>
 					<td>顧客ID</td>
-					<td><%=customer.getId()%></td>
-				</tr>
-				<tr>
 					<td>氏名</td>
-					<td><%=customer.getName()%></td>
-				</tr>
-				<tr>
 					<td>かな</td>
-					<td><%=customer.getNameKana()%></td>
-				</tr>
-				<tr>
 					<td>郵便番号</td>
-					<td><%=customer.getPostCode()%></td>
-				</tr>
-				<tr>
 					<td>地区</td>
-					<td><%=customer.getAreaCode()%></td>
-				</tr>
-				<tr>
 					<td>性別</td>
-					<td><%=customer.getGender()%></td>
-				</tr>
-				<tr>
-					<%
-					String birthday = customer.getBirthday();
-					String birthdayFormat = birthday.replace("-", "");
-					%>
 					<td>生年月日</td>
-					<td><%=birthdayFormat%></td>
-				</tr>
-				<tr>
 					<td>電話番号</td>
-					<td><%=customer.getPhoneNumber()%></td>
+					<td>登録日時</td>
+					<td>更新日時</td>
 				</tr>
 				<tr>
+					<td><%=customer.getId()%></td>
+					<td><%=customer.getName()%></td>
+					<td><%=customer.getNameKana()%></td>
+					<td><%=customer.getPostCode()%></td>
+					<td><%=customer.getAreaCode()%></td>
+					<td><%=customer.getGender()%></td>
+					<td><%=customer.getBirthday()%></td>
+					<td><%=customer.getPhoneNumber()%></td>
+
+					<%if ("A2".equals(user.getAuthorityCode()) || "A3".equals(user.getAuthorityCode())) { %>
 					<td>
 						<form method="post" action="customer-edit">
 							<input type="hidden" name="customerId"
@@ -62,8 +59,6 @@ CustomerBean customer = (CustomerBean) request.getAttribute("customer");
 								name="button" value="編集">
 						</form>
 					</td>
-				</tr>
-				<tr>
 					<td>
 						<form method="post" action="customer-delete">
 							<input type="hidden" name="customerId"
@@ -71,10 +66,12 @@ CustomerBean customer = (CustomerBean) request.getAttribute("customer");
 								name="button" value="削除">
 						</form>
 					</td>
+					<% } %>
 				</tr>
 			</table>
 			<form method="post" action="customer-list">
-				<input type="submit" name="button" value="顧客一覧">
+				<input type="submit" name="button" class="btn btn-outline-secondary"
+					value="顧客一覧">
 			</form>
 		</div>
 	</main>

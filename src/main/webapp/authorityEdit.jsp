@@ -9,21 +9,23 @@ UserBean user = (UserBean) session.getAttribute("user");
 <head>
 <meta charset="UTF-8">
 <title>権限編集画面</title>
-<link rel="stylesheet" href="./assets/stylesheets/app.css">
+<link rel="stylesheet" href="assets/stylesheets/app.css" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="/WEB-INF/include/header.jsp" %>
 	<div class="main">
 		<main>
 			<h1>権限編集フォーム</h1>
 			<form action="authority-edit" method="post">
-				<div class="editBox" style="display: flex">
+				<div class="editBox" style="text-align: center;">
 					<div>
-						<label for="userd">ユーザー名</label>
-						<select id="userd" name="userd">
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
+						<label for="userId">ユーザー名</label>
+						<select id="userId" name="userId">
+							<option value="readerU">readerU</option>
+							<option value="editU">editU</option>
+							<option value="managerU">managerU</option>
 						</select>
 					</div>
 					<div>
