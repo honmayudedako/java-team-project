@@ -50,6 +50,8 @@ UserBean user = (UserBean) session.getAttribute("user");
 					<td><%=customer.getGender()%></td>
 					<td><%=customer.getBirthday()%></td>
 					<td><%=customer.getPhoneNumber()%></td>
+					<td><%=customer.getInsertDateTime()%></td>
+					<td><%=customer.getUpdateDateTime()%></td>
 
 					<%if ("A1".equals(user.getAuthorityCode()) || "A2".equals(user.getAuthorityCode())) { %>
 					<td>

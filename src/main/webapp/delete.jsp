@@ -88,6 +88,14 @@ String id = request.getParameter("id");
 				<td>電話番号</td>
 				<td><%=customer.getPhoneNumber()%></td>
 			</tr>
+			<tr>
+				<td>登録日時</td>
+				<td><%=customer.getInsertDateTime()%></td>
+			</tr>
+			<tr>
+				<td>更新日時</td>
+				<td><%=customer.getUpdateDateTime()%></td>
+			</tr>
 		</table>
 		<form action="customer-delete" method="post">
 			<div class="d-flex justify-content-end">
