@@ -34,7 +34,7 @@ List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("cus
 
 
 		<%
-		if (customerList != null) {
+		if (customerList != null && customerList.size() > 0) {
 		%>
 
 		<table class="table">
@@ -75,8 +75,12 @@ List<CustomerBean> customerList = (List<CustomerBean>) request.getAttribute("cus
 		</table>
 
 		<%
-		}
-		%>
+		} else {
+			%>
+			<p style="color: red; font-size: 20px">該当する顧客は存在しません</p>
+			<%
+			}
+			%>
 
 		<a href="menu" class="btn btn-outline-secondary">メニュー画面へ</a>
 
